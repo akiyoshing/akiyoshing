@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>指輪スワイプギャラリー</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      background: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      width: 90%;
+      max-width: 400px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      text-align: center;
+      touch-action: pan-y;
+    }
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    h2 {
+      font-size: 20px;
+      margin: 10px 0 5px;
+    }
+    p {
+      margin: 0 0 15px;
+      color: #555;
+    }
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #007aff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container" id="swipeArea">
+  <img id="ringImage" src="tiffany1.png" alt="Ring">
+  <h2 id="brandName">ティファニー</h2>
+  <p id="description">0.3ct 1石のセット</p>
+  <button onclick="alert('一緒に見に行こう💍')">一緒に見に行こう💍</button>
+</div>
+
+<script>
+  const rings = [
+    { brand: 'ティファニー', desc: '0.3ct 1石のセット', img: 'tiffany1.png' },
+    { brand: 'ティファニー', desc: '0.3ct 1石メレ付きのセット', img: 'tiffany2.png' },
+    { brand: 'カルティエ', desc: '0.3ct 1石のセット', img: 'cartier1.png' },
+    { brand: 'カルティエ', desc: '0.3ct 1石メレ付きのセット', img: 'cartier2.png' },
+    { brand: 'ラザール', desc: '0.8ct 1石のセット', img: 'lazare1.png' },
+    { brand: 'ラザール', desc: '0.7ct 1石メレ付きのセット', img: 'lazare2.png' },
+    { brand: 'ブリリアンス＋', desc: '1ct 1石のセット', img: 'brilliance1.png' },
+    { brand: 'ブリリアンス＋', desc: '0.8ct 1石メレ付きのセット', img: 'brilliance2.png' },
+    { brand: 'ネクストダイヤニューヨーク', desc: '1.12ct 1石（ラボダイヤ）', img: 'nextdia1.png' }
+  ];
+
+  let currentIndex = 0;
+  const imgEl = document.getElementById('ringImage');
+  const brandEl = document.getElementById('brandName');
+  const descEl = document.getElementById('description');
+  const swipeArea = document.getElementById('swipeArea');
+
+  function updateDisplay() {
+    const item = rings[currentIndex];
+    imgEl.src = item.img;
+    brandEl.textContent = item.brand;
+    descEl.textContent = item.desc;
+  }
+
+  // タッチイベント処理
+  let startX = null;
+
+  swipeArea.addEventListener('touchstart', function(e) {
+    startX = e.touches[0].clientX;
+  });
+
+  swipeArea.addEventListener('touchend', function(e) {
+    if (startX === null) return;
+    const endX = e.changedTouches[0].clientX;
+    const deltaX = endX - startX;
+
+    if (Math.abs(deltaX) > 50) {
+      if (deltaX < 0) {
+        currentIndex = (currentIndex + 1) % rings.length;
+      } else {
+        currentIndex = (currentIndex - 1 + rings.length) % rings.length;
+      }
+      updateDisplay();
+    }
+
+    startX = null;
+  });
+
+  updateDisplay();
+</script>
+
+</body>
+</html>
