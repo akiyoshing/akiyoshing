@@ -1,30 +1,165 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>Magic Key</title>
+  <title>ディズニークイズマップ</title>
   <style>
-    body { font-family: sans-serif; text-align: center; padding: 50px; }
-    input { padding: 10px; font-size: 1rem; }
-    button { padding: 10px 20px; font-size: 1rem; }
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+    #map-container {
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      position: relative;
+    }
+    #map {
+      position: relative;
+      display: inline-block;
+    }
+    #map img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .pin {
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      background: url('pin-blue.png') no-repeat center center;
+      background-size: contain;
+      cursor: pointer;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+    }
+    .question-box {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.95);
+      padding: 20px;
+      border: 2px solid #00aaff;
+      border-radius: 8px;
+      z-index: 10;
+      display: none;
+      max-width: 90vw;
+    }
+    .question-box input[type="text"] {
+      width: 100%;
+      margin-top: 10px;
+      padding: 5px;
+      font-size: 16px;
+    }
+    .question-box button {
+      margin-top: 10px;
+      margin-right: 10px;
+      padding: 8px 12px;
+      font-size: 16px;
+      background-color: #00aaff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      z-index: 5;
+    }
   </style>
 </head>
 <body>
-  <h2>この魔法のカギを解いたら</h2>
-  <p>大切な宝箱が開くよ。</p>
-  <p>Q: シンデレラの魔法が解ける時間は？</p>
-  <input type="text" id="answer" placeholder="数字を入力してね">
-  <button onclick="check()">カギを開ける</button>
-  <p id="result" style="color:red;"></p>
+  <div id="overlay"></div>
+  <div id="map-container">
+    <div id="map">
+      <img id="map-image" src="map-placeholder.jpg" alt="Map">
+    </div>
+  </div>
+  <div class="question-box" id="questionBox">
+    <div id="questionText"></div>
+    <input type="text" id="answerInput" placeholder="答えを入力">
+    <button onclick="submitAnswer()">回答する</button>
+    <button onclick="closeQuestion()">閉じる</button>
+  </div>
+
   <script>
-    function check() {
-      const a = document.getElementById('answer').value.trim();
-      if (a === "12") {
-        window.location.href = "ring.html";
+    const questions = [
+      { text: 'Q1：「ハニーハント」の出口にある時計は何時何分？（数字4桁）', answer: ['0821'], x: 74, y: 20 },
+      { text: 'Q2：美女と野獣の応接室の紋章のバラは何色？', answer: ['金色', 'きんいろ', '金', 'きん'], x: 90, y: 38 },
+      { text: 'Q3：「ドナルドのボート」の船首側にある旗の色は？', answer: ['赤色', 'あかいろ', '赤', 'あか'], x: 83, y: 26 },
+      { text: 'Q4：「カリブの海賊」で骨を持ってる囚人は右から何番目？（数字）', answer: ['1'], x: 45, y: 65 },
+      { text: 'Q5：「スターツアーズ」のQラインにあるスタースピーダー1000の色は？', answer: ['赤色', 'あかいろ', '赤', 'あか'], x: 76, y: 68 },
+      { text: 'Q6：「フィルハーマジック」のシアター前にいるキャラは？', answer: ['ミッキー', 'みっきー'], x: 62, y: 25 },
+      { text: 'Q7：「モンスターズインク」の乗り物についてる目の数は？（数字）', answer: ['4'], x: 70, y: 40 },
+      { text: 'Q8：「ビッグサンダーマウンテン」の人が乗る貨車は何個ついてる?', answer: ['5'], x: 26, y: 25.5 },
+      { text: 'Q9：「Reach for the stars」で「無限のかなたへ さあ行くぞ」と言うのは？', answer: ['ウッディ','うっでぃ'], x: 56.5, y: 50 }
+    ];
+
+    let answered = Array(questions.length).fill(false);
+    let currentQuestionIndex = -1;
+
+    const map = document.getElementById('map');
+    const questionBox = document.getElementById('questionBox');
+    const questionText = document.getElementById('questionText');
+    const answerInput = document.getElementById('answerInput');
+    const overlay = document.getElementById('overlay');
+
+    function createPins() {
+      questions.forEach((q, i) => {
+        const pin = document.createElement('div');
+        pin.className = 'pin';
+        pin.style.left = q.x + '%';
+        pin.style.top = q.y + '%';
+        pin.dataset.index = i;
+        pin.onclick = () => openQuestion(i);
+        map.appendChild(pin);
+      });
+    }
+
+    function openQuestion(index) {
+      currentQuestionIndex = index;
+      questionText.innerText = questions[index].text;
+      answerInput.value = '';
+      questionBox.style.display = 'block';
+      overlay.style.display = 'block';
+    }
+
+    function closeQuestion() {
+      questionBox.style.display = 'none';
+      overlay.style.display = 'none';
+    }
+
+    function submitAnswer() {
+      const input = answerInput.value.trim();
+      const correctAnswers = questions[currentQuestionIndex].answer;
+      if (correctAnswers.includes(input)) {
+        answered[currentQuestionIndex] = true;
+        alert('ハハッ、正解だよ！さすがだね！');
+
+        const pin = document.querySelector(`.pin[data-index='${currentQuestionIndex}']`);
+        if (pin) pin.style.display = 'none';
+
+        closeQuestion();
+        checkAllAnswered();
       } else {
-        document.getElementById('result').textContent = "カギが合わないみたい…";
+        alert('違うよ！もう一度探してね');
       }
     }
+
+    function checkAllAnswered() {
+      if (answered.every(a => a)) {
+        window.location.href = 'ring.html';
+      }
+    }
+
+    createPins();
   </script>
 </body>
 </html>
