@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Magic Key</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 50px; }
+    input { padding: 10px; font-size: 1rem; }
+    button { padding: 10px 20px; font-size: 1rem; }
+  </style>
+</head>
+<body>
+  <h2>この魔法のカギを解いたら</h2>
+  <p>大切な宝箱が開くよ。</p>
+  <p>Q: シンデレラの魔法が解ける時間は？</p>
+  <input type="text" id="answer" placeholder="数字を入力してね">
+  <button onclick="check()">カギを開ける</button>
+  <p id="result" style="color:red;"></p>
+  <script>
+    function check() {
+      const a = document.getElementById('answer').value.trim();
+      if (a === "12") {
+        window.location.href = "ring.html";
+      } else {
+        document.getElementById('result').textContent = "カギが合わないみたい…";
+      }
+    }
+  </script>
+</body>
+</html>
