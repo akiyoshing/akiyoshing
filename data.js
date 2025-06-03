@@ -19,7 +19,7 @@ const ringData = {
   "ブリリアンス＋": [
     { carat: 0.8, name: "B＋A", image: "img/bp1.jpg", desc: "大粒で迫力のある印象" },
     { carat: 0.8, name: "B＋B", image: "img/bp2.jpg", desc: "サイドの石でメインの石を引き立てる" },
-    { carat: 0.8, name: "B＋B", image: "img/bp2.jpg", desc: "細身アームにを6石のダイヤで煌びやかに" }
+    { carat: 0.8, name: "B＋B", image: "img/bp3.jpg", desc: "細身アームにを6石のダイヤで煌びやかに" }
   ],
   "NextDiamond": [
     { carat: 1.01, name: "NextA", image: "img/nd1.jpg", desc: "大きなダイヤが目を引く、シンプルなデザイン(注意：ラボダイヤ)" }
