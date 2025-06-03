@@ -22,6 +22,6 @@ const ringData = {
     { carat: 0.8, name: "パフェ", image: "img/bp3.jpg", desc: "細身アームにを6石のダイヤで煌びやかに" }
   ],
   "NextDiamond": [
-    { carat: 1.01, name: "NextA", image: "img/nd1.jpg", desc: "大きなダイヤが目を引く、シンプルなデザイン(注意：ラボダイヤ)" }
+    { carat: 1.01, name: "ラボグロウンダイヤ", image: "img/nd1.jpg", desc: "大きなダイヤが目を引く、シンプルなデザイン(注意：ラボダイヤ)" }
   ]
 };
