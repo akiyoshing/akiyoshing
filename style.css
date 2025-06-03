@@ -123,5 +123,18 @@ body {
     .brand-grid, #ringList {
       grid-template-columns: 1fr;
     }
+
+      .ring-card p {
+    margin-top: 0.5rem;
+    font-size: 80px;
+    color: #666;
+  }
+
+.ring-card h4 {
+  font-size: 160px; /* お好みで調整 */
+  margin: 0.5rem 0 0 0;
+  color: #333;
+  font-weight: normal;
+}
   }
   
