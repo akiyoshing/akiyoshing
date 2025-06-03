@@ -21,7 +21,7 @@ const ringData = {
       { carat: 0.8, name: "B＋B", image: "img/bp2.jpg", desc: "細身アームで大きさを引き立てる。" }
     ],
     "NextDiamond": [
-      { carat: 1.01, name: "NextA", image: "img/nd1.jpg", desc: "大きなダイヤが目を引く、シンプルなデザイン(注意：ラボダイヤ)" },
+      { carat: 1.01, name: "NextA", image: "img/nd1.jpg", desc: "大きなダイヤが目を引く、シンプルなデザイン(注意：ラボダイヤ)" }
     ]
   };
   
