@@ -11,12 +11,11 @@ const ringData = {
       { carat: 0.3, name: "アッシャーカットC", image: "img/ra3.jpg", desc: "華やかなアーム。" }
     ],
     "ラザール": [
-      { carat: 0.4, name: "ユニオン", image: "img/laz1.jpg", desc: "輝きを最大限に引き出すデザインで、あふれる光を指先に纏って" },
-      { carat: 0.4, name: "トンプソン", image: "img/laz2.jpg", desc: "サイドのダイヤがメインのダイヤを輝かす" }
-      { carat: 0.4, name: "ローズランド", image: "img/laz3.jpg", desc: "5石の装飾で、華やかかつ優美なデザイン" }
-      { carat: 0.4, name: "アーヴィング", image: "img/laz4.jpg", desc: "端正でスタンダードな「約束」の証" }
-      
-    ],
+  { carat: 0.4, name: "ユニオン", image: "img/laz1.jpg", desc: "輝きを最大限に引き出すデザインで、あふれる光を指先に纏って" },
+  { carat: 0.4, name: "トンプソン", image: "img/laz2.jpg", desc: "サイドのダイヤがメインのダイヤを輝かす" },
+  { carat: 0.4, name: "ローズランド", image: "img/laz3.jpg", desc: "5石の装飾で、華やかかつ優美なデザイン" },
+  { carat: 0.4, name: "アーヴィング", image: "img/laz4.jpg", desc: "端正でスタンダードな「約束」の証" }
+],
     "ブリリアンス＋": [
       { carat: 0.8, name: "B＋A", image: "img/bp1.jpg", desc: "大粒で迫力のある印象。" },
       { carat: 0.8, name: "B＋B", image: "img/bp2.jpg", desc: "細身アームで大きさを引き立てる。" }
