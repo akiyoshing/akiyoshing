@@ -66,11 +66,11 @@ body {
   }
   
 .ring-card p {
-  font-size: 34px;
+  font-size: 17px;
 }
 
 .ring-card h4 {
-  font-size: 54px;
+  font-size: 34px;
   font-weight: bold;
 }
 
@@ -122,11 +122,11 @@ body {
     }
 
    .ring-card p {
-  font-size: 34px;
+  font-size: 17px;
 }
 
 .ring-card h4 {
-  font-size: 54px;
+  font-size: 34px;
   font-weight: bold;
 }
   }
