@@ -121,12 +121,12 @@ body {
       grid-template-columns: 1fr;
     }
 
-      .ring-card p {
-  font-size: 12px;
+   .ring-card p {
+  font-size: 54px;
 }
 
 .ring-card h4 {
-  font-size: 14px;
+  font-size: 32px;
   font-weight: bold;
 }
   }
