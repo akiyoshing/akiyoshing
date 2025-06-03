@@ -48,33 +48,30 @@
       z-index: 10;
       display: none;
       max-width: 90vw;
-      max-height: 80vh;              /* 追加 */
-      overflow-y: auto;              /* 追加 */
-      box-sizing: border-box;
     }
-
     .question-box input[type="text"] {
       width: 100%;
       margin-top: 10px;
       padding: 5px;
       font-size: 16px;
-      box-sizing: border-box;
     }
-
-    @media (max-width: 480px) {
-      .question-box {
-        padding: 15px;
-        font-size: 14px;
-      }
-
-      .question-box button {
-        font-size: 14px;
-        padding: 6px 10px;
-      }
-
-      .question-box input[type="text"] {
-        font-size: 16px; /* iOSの拡大防止のため16px以上 */
-      }
+    .question-box button {
+      margin-top: 10px;
+      margin-right: 10px;
+      padding: 8px 12px;
+      font-size: 16px;
+      background-color: #00aaff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      z-index: 5;
     }
   </style>
 </head>
